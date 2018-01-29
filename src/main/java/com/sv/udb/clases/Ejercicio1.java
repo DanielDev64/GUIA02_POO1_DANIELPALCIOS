@@ -30,8 +30,11 @@ public class Ejercicio1 {
         double resp = 0;
         try
         {
-            for(Moneda temp : this.listMone)
+            
+            for(Moneda temp : this.listMone){
+                
                 resp += (temp.getCant() * temp.getDeno());
+            }
         }
         catch(Exception ex)
         {

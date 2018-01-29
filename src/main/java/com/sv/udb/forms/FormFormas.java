@@ -30,6 +30,8 @@ public class FormFormas extends javax.swing.JFrame {
         btnGenerar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea = new javax.swing.JTextArea();
+        cmbForma = new javax.swing.JComboBox<>();
+        btnAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,28 +46,43 @@ public class FormFormas extends javax.swing.JFrame {
         txtArea.setRows(5);
         jScrollPane1.setViewportView(txtArea);
 
+        cmbForma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Forma 1", "Forma 2", "Forma 3" }));
+
+        btnAtras.setText("Atras");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(cmbForma, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnGenerar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnAtras))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(btnGenerar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGenerar)
+                    .addComponent(cmbForma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(btnAtras))
         );
 
         btnGenerar.getAccessibleContext().setAccessibleName("btnGenerar");
@@ -74,13 +91,56 @@ public class FormFormas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
-        for(int i=0; i< 4;i++){
-            String texto = "\n      ┊┊┊      ┊┊┊      ┊┊┊      ┊┊┊"
-                + "\n┊┊┊      ┊┊┊      ┊┊┊      ┊┊┊";
-        txtArea.append(texto);
-        }
+        GenerarForma(cmbForma.getSelectedIndex());
     }//GEN-LAST:event_btnGenerarActionPerformed
 
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+       FormMenu frm = new FormMenu();
+        frm.setVisible(true);
+        this.hide();
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
+    public void GenerarForma(int num){
+        switch(num){
+            case 0:
+                txtArea.setText("");
+                for(int i=0; i< 4;i++){
+                 String texto = "\n      ┊┊┊      ┊┊┊      ┊┊┊      ┊┊┊"
+                + "\n┊┊┊      ┊┊┊      ┊┊┊      ┊┊┊";
+                txtArea.append(texto);
+                 }
+                break;
+            case 1:
+                        int contador = 0;
+                        txtArea.setText("Figura en consola");
+                        System.out.println();
+                    for (int i = 1; i <= 10; i++) {
+                        System.out.println(" ");
+                        contador = (2 * i) - 1;
+                        for (int s = 1; s <= (10 - i); s++) {
+                            System.out.print(" ");
+                        }
+
+                        for (int f = i; f <= contador; f++) {
+                            System.out.print( f % 10);
+                        }
+
+                        for (int g = (contador - 1); g >= i; g--) {
+                            System.out.print(g % 10);
+                        }
+                    }
+                break;
+            case 2:
+                txtArea.setText("");
+                for(int i=0; i< 4;i++){
+                 String texto = "\n     ✶      ✶      ✶      ✶"
+                              + "\n✶      ✶      ✶      ✶";
+                txtArea.append(texto);
+                 }
+                break;
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -117,7 +177,9 @@ public class FormFormas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnGenerar;
+    private javax.swing.JComboBox<String> cmbForma;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtArea;
     // End of variables declaration//GEN-END:variables
